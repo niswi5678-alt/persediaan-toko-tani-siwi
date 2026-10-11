@@ -126,21 +126,33 @@ async function checkConnection() {
   const dot  = document.getElementById('status-dot');
   const text = document.getElementById('status-text');
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 10000);
+  let timeoutId;
+
+  text.textContent = 'Mengecek koneksi...';
+  dot.className = 'status-dot';
 
   try {
-    const { error } = await supabaseClient
+    const request = supabaseClient
       .from('kategori')
       .select('id')
       .limit(1)
       .abortSignal(controller.signal);
+    const timeout = new Promise((_, reject) => {
+      timeoutId = setTimeout(() => {
+        controller.abort();
+        reject(new Error('Supabase connection check timed out'));
+      }, 10000);
+    });
+    const { error } = await Promise.race([request, timeout]);
     if (error) throw error;
 
     dot.className = 'status-dot online';
     text.textContent = 'PostgreSQL aktif';
   } catch (err) {
     dot.className = 'status-dot offline';
-    text.textContent = err.name === 'AbortError' ? 'Koneksi timeout' : 'Koneksi gagal';
+    text.textContent = err instanceof Error && err.message === 'Supabase connection check timed out'
+      ? 'Koneksi timeout'
+      : 'Koneksi gagal';
     console.error('Supabase connection check failed:', err);
   } finally {
     clearTimeout(timeoutId);
