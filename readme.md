@@ -15,29 +15,31 @@ Dashboard berbasis web untuk mencatat persediaan dan memantau stok barang toko p
 - Penyimpanan data menggunakan Supabase (PostgreSQL).
 
 ## Struktur repository
+
+```
 .
 ├── back-end/
-│ ├── app.js
-│ └── sql/
-│ └── schema.sql
+│   ├── app.js
+│   └── sql/
+│       └── schema.sql
 ├── front-end/
-│ ├── index.html
-│ ├── css/
-│ │ └── style.css
-│ └── js/
-│ ├── supabase-config.js
-│ ├── app.js
-│ ├── dashboard.js
-│ ├── kategori.js
-│ ├── supplier.js
-│ ├── produk.js
-│ └── stok.js
+│   ├── index.html
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       ├── supabase-config.js
+│       ├── app.js
+│       ├── dashboard.js
+│       ├── kategori.js
+│       ├── supplier.js
+│       ├── produk.js
+│       └── stok.js
 ├── docs/
-│ └── skema-persediaan-tani.md
+│   └── skema-persediaan-tani.md
 ├── .gitignore
 ├── index.html
 └── README.md
-
+```
 
 Frontend adalah halaman aplikasi statis (HTML/CSS/JavaScript). Backend berisi file `schema.sql` untuk database dan `app.js` sebagai referensi layer API. Database dikelola oleh Supabase (PostgreSQL) dan diakses langsung dari frontend menggunakan Supabase JS v2 via CDN.
 
