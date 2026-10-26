@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TaniStock - Sistem Akuntansi</title>
+  
+  <!-- PASTIKAN BARIS INI ADA DAN HURUFNYA KECIL -->
   <link rel="stylesheet" href="css/style.css" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div class="app">
-    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-logo">t.</div>
@@ -50,7 +52,6 @@
       </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main">
       <header class="topbar">
         <div class="breadcrumb">
@@ -70,9 +71,7 @@
         </div>
       </header>
 
-      <!-- DASHBOARD -->
       <section class="page active" id="page-dashboard">
-        <!-- HERO BANNER (Tanpa Tulisan Tertata Rapi) -->
         <div class="hero-banner">
           <div class="hero-content">
             <div class="hero-date">SENIN, 12 OKTOBER 2026</div>
@@ -80,7 +79,6 @@
             <p class="hero-subtitle">Pantau stok hari ini dan pastikan setiap benih, pupuk, dan alat siap untuk petani.</p>
           </div>
           <div class="hero-illustration">
-            <!-- Ilustrasi placeholder warna-warni -->
             <div class="deco-card bg-pink"></div>
             <div class="deco-card bg-yellow"></div>
             <div class="deco-card bg-cream"></div>
@@ -88,7 +86,6 @@
           </div>
         </div>
 
-        <!-- STATS CARDS -->
         <div class="stats">
           <div class="stat-card">
             <div class="stat-header">
@@ -120,7 +117,6 @@
           </div>
         </div>
 
-        <!-- CHART SECTION -->
         <div class="grid-2">
           <div class="panel">
             <div class="panel-header">
@@ -164,7 +160,6 @@
         </div>
       </section>
 
-      <!-- PRODUCTS -->
       <section class="page" id="page-products">
         <div class="panel">
           <div class="panel-header">
@@ -186,7 +181,6 @@
         </div>
       </section>
 
-      <!-- SUPPLIERS -->
       <section class="page" id="page-suppliers">
         <div class="panel">
           <div class="panel-header">
@@ -208,7 +202,6 @@
         </div>
       </section>
 
-      <!-- TRANSACTIONS -->
       <section class="page" id="page-transactions">
         <div class="panel">
           <div class="panel-header">
@@ -230,7 +223,6 @@
         </div>
       </section>
 
-      <!-- JOURNAL -->
       <section class="page" id="page-journal">
         <div class="panel">
           <div class="panel-header">
@@ -253,7 +245,6 @@
     </main>
   </div>
 
-  <!-- MODAL -->
   <div class="modal" id="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -266,7 +257,6 @@
 
   <div class="toast" id="toast"></div>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="js/supabase-client.js"></script>
