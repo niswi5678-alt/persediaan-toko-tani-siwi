@@ -1,96 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaniStock - Sistem Akuntansi</title>
-  <style>
-  /* ========================================= */
-  /* CSS LANGSUNG DITARUH DI SINI              */
-  /* ========================================= */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --bg-body: #f2f1e8;
-    --bg-sidebar: #2d3a24;
-    --bg-panel: #fffdf5;
-    --text-main: #1f261a;
-    --text-muted: #737a6c;
-    --accent-pink: #d6336c;
-    --border-color: #e3e1d5;
-    --font-ui: 'Inter', sans-serif;
-    --font-heading: 'Playfair Display', serif;
-  }
-  body { background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-ui); min-height: 100vh; }
-  .app { display: flex; min-height: 100vh; }
-  .sidebar { width: 260px; background-color: var(--bg-sidebar); color: #e2e8df; display: flex; flex-direction: column; padding: 24px 20px; position: fixed; height: 100vh; z-index: 10; }
-  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
-  .brand-logo { width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: #fff; }
-  .brand-text h1 { font-size: 20px; font-weight: 600; letter-spacing: 1px; color: #fff; }
-  .brand-text span { font-size: 12px; color: #9fb095; }
-  .nav-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: #7d8f72; margin-bottom: 12px; }
-  .nav { display: flex; flex-direction: column; gap: 6px; flex: 1; }
-  .nav-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: none; border-radius: 12px; background: transparent; color: #b9c7b2; font-family: var(--font-ui); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; text-align: left; }
-  .nav-item:hover { background: rgba(255,255,255,0.05); color: #fff; }
-  .nav-item.active { background: var(--accent-pink); color: #fff; }
-  .nav-icon { font-size: 16px; }
-  .sidebar-footer { margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-  .db-status { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-  .db-status .dot { width: 10px; height: 10px; background: #4ade80; border-radius: 50%; }
-  .db-status strong { font-size: 13px; color: #fff; display: block; }
-  .db-status small { font-size: 11px; color: #9fb095; }
-  .copyright { text-align: center; font-size: 11px; color: #7d8f72; letter-spacing: 1px; }
-  .main { flex: 1; margin-left: 260px; padding: 30px 40px; }
-  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-  .breadcrumb { font-size: 13px; font-weight: 600; letter-spacing: 1px; color: var(--text-main); text-transform: uppercase; }
-  .breadcrumb span { color: var(--text-muted); margin: 0 8px; }
-  .topbar-right { display: flex; align-items: center; gap: 20px; }
-  .date-display { font-size: 12px; font-weight: 600; letter-spacing: 1px; color: var(--text-muted); }
-  .icon-btn { background: transparent; border: 1px solid var(--border-color); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-  .user-profile { display: flex; align-items: center; gap: 10px; }
-  .avatar { width: 40px; height: 40px; background: var(--accent-pink); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; }
-  .user-info strong { display: block; font-size: 14px; color: var(--text-main); }
-  .user-info span { font-size: 12px; color: var(--text-muted); }
-  .hero-banner { background: linear-gradient(135deg, #38472b 0%, #1e2817 100%); border-radius: 24px; padding: 40px; display: flex; justify-content: space-between; align-items: center; color: #fff; margin-bottom: 24px; }
-  .hero-content { max-width: 500px; }
-  .hero-date { font-size: 11px; letter-spacing: 2px; color: #a4c298; margin-bottom: 12px; font-weight: 600; }
-  .hero-title { font-family: var(--font-heading); font-size: 42px; font-weight: 600; margin-bottom: 16px; color: #f6f5eb; }
-  .hero-subtitle { font-size: 14px; color: #c8d6c1; }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px; }
-  .stat-card { background: var(--bg-panel); border-radius: 16px; padding: 24px; border: 1px solid var(--border-color); }
-  .stat-header { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
-  .stat-value { font-family: var(--font-heading); font-size: 42px; font-weight: 700; color: var(--text-main); line-height: 1; margin-bottom: 12px; }
-  .stat-footer { font-size: 12px; color: var(--text-muted); }
-  .grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-  .panel { background: var(--bg-panel); border-radius: 20px; padding: 28px; border: 1px solid var(--border-color); margin-bottom: 20px; }
-  .panel-header { display: flex; justify-content: space-between; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
-  .panel-label { font-size: 11px; font-weight: 600; color: var(--accent-pink); text-transform: uppercase; }
-  .panel-header h3 { font-family: var(--font-heading); font-size: 28px; color: var(--text-main); margin-top: 6px; }
-  .panel-header p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
-  .badge-count { width: 32px; height: 32px; background: #fce7f3; color: var(--accent-pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; }
-  .table-wrap { overflow-x: auto; }
-  .table-clean { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .table-clean th { text-align: left; padding: 12px 16px; font-size: 12px; color: var(--text-muted); border-bottom: 1px solid var(--border-color); text-transform: uppercase; }
-  .table-clean td { padding: 16px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
-  .badge { padding: 6px 12px; border-radius: 99px; font-size: 12px; font-weight: 600; }
-  .badge-in { background: #dcfce7; color: #166534; }
-  .badge-out { background: #ffe4e6; color: #be123c; }
-  .btn { padding: 12px 20px; border-radius: 99px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; }
-  .btn-primary { background: var(--accent-pink); color: #fff; }
-  .page { display: none; }
-  .page.active { display: block; }
-  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
-  .modal.open { display: flex; }
-  .modal-content { background: #fff; border-radius: 20px; width: 100%; max-width: 480px; padding: 24px; }
-  .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 10px; margin-bottom: 10px; }
-  .form-actions { display: flex; gap: 10px; margin-top: 10px; }
-  .toast { position: fixed; bottom: 30px; right: 30px; padding: 14px 24px; background: #333; color: #fff; border-radius: 12px; display: none; z-index: 2000; }
-  .toast.show { display: block; }
-</style>
-  <link rel="stylesheet" href="css/style.css" />
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- Memanggil CSS dari folder css -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
   <div class="app">
     <aside class="sidebar">
       <div class="brand">
@@ -103,21 +25,11 @@
 
       <div class="nav-label">RUANG KERJA</div>
       <nav class="nav">
-        <button class="nav-item active" data-page="dashboard">
-          <span class="nav-icon">🏠</span> Dashboard
-        </button>
-        <button class="nav-item" data-page="products">
-          <span class="nav-icon">📦</span> Katalog Produk
-        </button>
-        <button class="nav-item" data-page="suppliers">
-          <span class="nav-icon">🚚</span> Supplier
-        </button>
-        <button class="nav-item" data-page="transactions">
-          <span class="nav-icon">💱</span> Transaksi Stok
-        </button>
-        <button class="nav-item" data-page="journal">
-          <span class="nav-icon">📒</span> Jurnal
-        </button>
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">🏠</span> Dashboard</button>
+        <button class="nav-item" data-page="products"><span class="nav-icon">📦</span> Katalog Produk</button>
+        <button class="nav-item" data-page="suppliers"><span class="nav-icon">🚚</span> Supplier</button>
+        <button class="nav-item" data-page="transactions"><span class="nav-icon">💱</span> Transaksi Stok</button>
+        <button class="nav-item" data-page="journal"><span class="nav-icon">📒</span> Jurnal</button>
       </nav>
 
       <div class="sidebar-footer">
@@ -139,7 +51,6 @@
         </div>
         <div class="topbar-right">
           <div class="date-display">SENIN, 12 OKTOBER 2026</div>
-          <button class="icon-btn" id="theme-toggle" title="Ganti Tema">🌙</button>
           <div class="user-profile">
             <div class="avatar">A</div>
             <div class="user-info">
@@ -147,10 +58,10 @@
               <span>Administrator</span>
             </div>
           </div>
-          <button class="icon-btn logout-btn" id="logout-btn" title="Keluar">🚪</button>
         </div>
       </header>
 
+      <!-- DASHBOARD -->
       <section class="page active" id="page-dashboard">
         <div class="hero-banner">
           <div class="hero-content">
@@ -158,40 +69,26 @@
             <h1 class="hero-title">TaniStock</h1>
             <p class="hero-subtitle">Pantau stok hari ini dan pastikan setiap benih, pupuk, dan alat siap untuk petani.</p>
           </div>
-          <div class="hero-illustration">
-            <div class="deco-card bg-pink"></div>
-            <div class="deco-card bg-yellow"></div>
-            <div class="deco-card bg-cream"></div>
-            <span class="emoji-deco">🌱</span>
-          </div>
         </div>
 
         <div class="stats">
           <div class="stat-card">
-            <div class="stat-header">
-              <span>Kategori aktif</span> <span>◈</span>
-            </div>
+            <div class="stat-header"><span>Kategori aktif</span> <span>◈</span></div>
             <div class="stat-value" id="stat-products">0</div>
             <div class="stat-footer">grup produk terdaftar</div>
           </div>
           <div class="stat-card">
-            <div class="stat-header">
-              <span>Supplier</span> <span>⌂</span>
-            </div>
+            <div class="stat-header"><span>Supplier</span> <span>⌂</span></div>
             <div class="stat-value" id="stat-suppliers">0</div>
             <div class="stat-footer">mitra pemasok aktif</div>
           </div>
           <div class="stat-card">
-            <div class="stat-header">
-              <span>Produk</span> <span>⌂</span>
-            </div>
+            <div class="stat-header"><span>Produk</span> <span>⌂</span></div>
             <div class="stat-value" id="stat-transactions">0</div>
             <div class="stat-footer">item dalam katalog</div>
           </div>
           <div class="stat-card">
-            <div class="stat-header">
-              <span>Stok masuk</span> <span>◇</span>
-            </div>
+            <div class="stat-header"><span>Stok masuk</span> <span>◇</span></div>
             <div class="stat-value" id="stat-value">0</div>
             <div class="stat-footer">transaksi tercatat</div>
           </div>
@@ -207,12 +104,8 @@
             </div>
             <div class="table-wrap">
               <table class="table-clean">
-                <thead>
-                  <tr>
-                    <th>PRODUK</th><th>JUMLAH</th><th>JENIS</th><th>TANGGAL</th>
-                  </tr>
-                </thead>
-                <tbody id="dashboard-recent"></tbody>
+                <thead><tr><th>PRODUK</th><th>JUMLAH</th><th>JENIS</th><th>TANGGAL</th></tr></thead>
+                <tbody id="dashboard-recent"><tr><td colspan="4" style="text-align:center;">Memuat data...</td></tr></tbody>
               </table>
             </div>
           </div>
@@ -224,100 +117,87 @@
                 <h3>Stok menipis</h3>
                 <p>Produk dengan stok di bawah 10 unit</p>
               </div>
-              <div class="badge-count">2</div>
             </div>
             <div class="table-wrap">
               <table class="table-clean">
-                <thead>
-                  <tr><th>PRODUK</th><th>KATEGORI</th><th>SISA</th></tr>
-                </thead>
-                <tbody id="low-stock-table">
-                  <tr><td colspan="3" style="text-align:center;color:#888;padding:20px;">Memuat data...</td></tr>
-                </tbody>
+                <thead><tr><th>PRODUK</th><th>KATEGORI</th><th>SISA</th></tr></thead>
+                <tbody id="low-stock-table"><tr><td colspan="3" style="text-align:center;">Memuat data...</td></tr></tbody>
               </table>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- PRODUK -->
       <section class="page" id="page-products">
         <div class="panel">
           <div class="panel-header">
             <div>
               <span class="panel-label">KATALOG</span>
               <h3>Produk Pertanian</h3>
-              <p>Daftar semua produk yang dijual di toko</p>
             </div>
             <button class="btn btn-primary" onclick="openProductModal()">+ Tambah Produk</button>
           </div>
           <div class="table-wrap">
             <table class="table-clean">
-              <thead>
-                <tr><th>#</th><th>NAMA PRODUK</th><th>SATUAN</th><th>HARGA</th><th>STOK</th><th>AKSI</th></tr>
-              </thead>
-              <tbody id="products-table"></tbody>
+              <thead><tr><th>NAMA PRODUK</th><th>SATUAN</th><th>HARGA</th><th>STOK</th><th>AKSI</th></tr></thead>
+              <tbody id="products-table"><tr><td colspan="5" style="text-align:center;">Memuat data...</td></tr></tbody>
             </table>
           </div>
         </div>
       </section>
 
+      <!-- SUPPLIER -->
       <section class="page" id="page-suppliers">
         <div class="panel">
           <div class="panel-header">
             <div>
               <span class="panel-label">DATA MASTER</span>
               <h3>Supplier / Mitra</h3>
-              <p>Kelola data pemasok barang ke toko Anda</p>
             </div>
             <button class="btn btn-primary" onclick="openSupplierModal()">+ Tambah Supplier</button>
           </div>
           <div class="table-wrap">
             <table class="table-clean">
-              <thead>
-                <tr><th>#</th><th>NAMA SUPPLIER</th><th>KONTAK</th><th>ALAMAT</th><th>AKSI</th></tr>
-              </thead>
-              <tbody id="suppliers-table"></tbody>
+              <thead><tr><th>NAMA</th><th>TELEPON</th><th>ALAMAT</th><th>AKSI</th></tr></thead>
+              <tbody id="suppliers-table"><tr><td colspan="4" style="text-align:center;">Memuat data...</td></tr></tbody>
             </table>
           </div>
         </div>
       </section>
 
+      <!-- TRANSAKSI -->
       <section class="page" id="page-transactions">
         <div class="panel">
           <div class="panel-header">
             <div>
               <span class="panel-label">TRANSAKSI</span>
               <h3>Riwayat Stok</h3>
-              <p>Catat semua pergerakan stok masuk & keluar</p>
             </div>
             <button class="btn btn-primary" onclick="openTransactionModal()">+ Catat Stok</button>
           </div>
           <div class="table-wrap">
             <table class="table-clean">
-              <thead>
-                <tr><th>#</th><th>PRODUK</th><th>JUMLAH</th><th>JENIS</th><th>TANGGAL</th><th>AKSI</th></tr>
-              </thead>
-              <tbody id="transactions-table"></tbody>
+              <thead><tr><th>TANGGAL</th><th>PRODUK</th><th>JENIS</th><th>JUMLAH</th><th>TOTAL</th></tr></thead>
+              <tbody id="transactions-table"><tr><td colspan="5" style="text-align:center;">Memuat data...</td></tr></tbody>
             </table>
           </div>
         </div>
       </section>
 
+      <!-- JURNAL -->
       <section class="page" id="page-journal">
         <div class="panel">
           <div class="panel-header">
             <div>
               <span class="panel-label">AKUNTANSI</span>
               <h3>Jurnal Umum</h3>
-              <p>Catatan transaksi debit & kredit otomatis</p>
             </div>
           </div>
           <div class="table-wrap">
             <table class="table-clean">
-              <thead>
-                <tr><th>TANGGAL</th><th>AKUN</th><th>DEBIT</th><th>KREDIT</th><th>REF</th></tr>
-              </thead>
-              <tbody id="journal-table"></tbody>
+              <thead><tr><th>TANGGAL</th><th>AKUN</th><th>DEBIT</th><th>KREDIT</th></tr></thead>
+              <tbody id="journal-table"><tr><td colspan="4" style="text-align:center;">Memuat data...</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -325,6 +205,7 @@
     </main>
   </div>
 
+  <!-- MODAL & TOAST -->
   <div class="modal" id="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -334,18 +215,10 @@
       <form id="modal-form"></form>
     </div>
   </div>
-
   <div class="toast" id="toast"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Script JS -->
   <script src="js/supabase-client.js"></script>
-  <script src="js/products.js"></script>
-  <script src="js/suppliers.js"></script>
-  <script src="js/transactions.js"></script>
-  <script src="js/journal.js"></script>
-  <script src="js/invoice.js"></script>
-  <script src="js/chart.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
